@@ -1,11 +1,18 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
-  return (
-    <div id="navbar">
-      <h2> I am navbar</h2>
-    </div>
-  );
-};
 
-export default Navbar;
+    return(
+        <div id="navbar">
+
+            <Link to="posts"><button>Posts Cunt!</button></Link>
+            <Link to="profile"><button>Profile Motherfucker!</button></Link>
+            <Link to="login"><button>Login Bitch!</button></Link>
+
+        </div>
+    )
+
+}
+
+export default Navbar
