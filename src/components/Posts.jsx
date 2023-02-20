@@ -1,7 +1,18 @@
 import React from "react"
 
-const Posts = () => {
+const Posts = (props) => {
+    const getPosts = props.getPosts;
+    const allPosts = props.allPosts;
 
+    useEffect(() => {
+
+        getPosts()
+
+    }, [allPosts])
+
+    // need to check if running getPosts inside Profile would cause this to run also
+
+    
 }
 
 export default Posts

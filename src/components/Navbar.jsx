@@ -6,7 +6,7 @@ const Navbar = () => {
     return(
         <div id="navbar">
 
-            <Link to="posts"><button>Posts Cunt!</button></Link>
+            <Link to="/"><button>Posts Cunt!</button></Link>
             <Link to="profile"><button>Profile Motherfucker!</button></Link>
             <Link to="login"><button>Login Bitch!</button></Link>
 

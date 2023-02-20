@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom"
-import { Navbar } from "./"
+import { Routes, Route } from "react-router-dom";
+import { Navbar, Posts, Login, Profile, Register } from "./"
 
 import { fetchAllPosts } from "../api-adapters";
 
 const Main = () => {
 
-    let [allPosts, setAllPosts] = useState([])
+    const [allPosts, setAllPosts] = useState([])
 
     const getPosts = async () => {
 
@@ -21,20 +21,18 @@ const Main = () => {
 
     }
 
-    useEffect(() => {
-
-        getPosts()
-
-    }, [])
-
     return(
         <div id="main">
 
             <Navbar />
-
-           
-
-            <Outlet />
+            <div id="container">
+                <Routes>
+                    <Route exact path="/" element={<Posts allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
+                    <Route path="/login" element={<Login />}/>
+                    <Route path="/register" element={<Register />}/>
+                    <Route path="/profile" element={<Profile allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
+                </Routes>
+            </div>
 
         </div>
     )
