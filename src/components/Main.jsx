@@ -7,6 +7,8 @@ import { fetchAllPosts } from "../api-adapters";
 const Main = () => {
 
     const [allPosts, setAllPosts] = useState([])
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     const getPosts = async () => {
 
@@ -28,8 +30,8 @@ const Main = () => {
             <div id="container">
                 <Routes>
                     <Route exact path="/" element={<Posts allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
-                    <Route path="/login" element={<Login />}/>
                     <Route path="/register" element={<Register />}/>
+                    <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>} />
                     <Route path="/profile" element={<Profile allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
                 </Routes>
             </div>
