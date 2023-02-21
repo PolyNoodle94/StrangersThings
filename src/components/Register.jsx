@@ -4,14 +4,14 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Register = (props) => {
 
-    let username = props.username
-    let setUsername = props.setUsername
+    const username = props.username
+    const setUsername = props.setUsername
 
-    let password = props.password
-    let setPassword = props.setPassword
+    const password = props.password
+    const setPassword = props.setPassword
 
-    let jsonWebToken = props.jsonWebToken
-    let setJSONWebToken = props.setJSONWebToken
+    const jsonWebToken = props.jsonWebToken
+    const setJSONWebToken = props.setJSONWebToken
 
     const navigate = useNavigate();
 
@@ -21,16 +21,14 @@ const Register = (props) => {
         <div className="registerPage" onSubmit={async (event) => {
 
             event.preventDefault();
-            console.log(username)
-            console.log(password)
             
-            setJSONWebToken( await registerNewUser(username, password))
-
-            console.log(jsonWebToken)
+            // setJSONWebToken( await registerNewUser(username, password))
+            let result = await registerNewUser(username, password);
+            await setJSONWebToken(result);
 
             //make it so that theyre automatically logged in and take them to the posts page
 
-            // navigate("/", {replace: true})
+            navigate("/", {replace: true})
             
 
         }}>
@@ -40,7 +38,6 @@ const Register = (props) => {
                     <input type="text" value={username} name="username" onChange={(event)=>{
 
                         setUsername(event.target.value)
-                        console.log('this is in register')
 
                     }}></input>
                 </label>

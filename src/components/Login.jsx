@@ -24,7 +24,6 @@ const Login = (props) => {
                     <input type="text" value={username} name="username" onChange={(event)=>{
 
                         setUsername(event.target.value)
-                        console.log('this is in login')
 
                     }}></input>
                 </label>

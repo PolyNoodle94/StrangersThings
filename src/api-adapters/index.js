@@ -12,8 +12,6 @@ export const fetchAllPosts = async () => {
 
 //To register user as well as get JSON Web Token
 export const registerNewUser = async (username, password) => {
-  console.log(username);
-  console.log(password);
   try {
     let response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -22,14 +20,14 @@ export const registerNewUser = async (username, password) => {
       },
       body: JSON.stringify({
         user: {
-          username: { username },
-          password: { password },
+          username:username,
+          password:password 
         },
       }),
     });
 
-    result = await response.json();
-    return result;
+    let result = await response.json();
+    return result.data.token;
   } catch (error) {
     console.log(error);
   }

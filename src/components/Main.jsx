@@ -29,7 +29,7 @@ const Main = () => {
     return(
         <div id="main">
 
-            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} jsonWebToken={jsonWebToken}/>
             <div id="container">
                 <Routes>
                     <Route exact path="/" element={<Posts allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
