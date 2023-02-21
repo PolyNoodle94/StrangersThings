@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { logUserIn } from '../api-adapters';
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
     const username = props.username;
@@ -8,13 +9,19 @@ const Login = (props) => {
     const setPassword = props.setPassword
     const setIsLoggedIn = props.setIsLoggedIn
 
+    const setJSONWebToken = props.setJSONWebToken
+
+    const navigate = useNavigate()
+
     return(
-        <div className="loginPage" onSubmit={(event) => {
+        <div className="loginPage" onSubmit={async (event) => {
 
             event.preventDefault();
             
-
+            await setJSONWebToken(await logUserIn(username,password))
             setIsLoggedIn(true)
+
+            navigate("/", {replace: true})  
 
 
         }}>

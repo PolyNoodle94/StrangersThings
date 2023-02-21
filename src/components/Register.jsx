@@ -13,6 +13,8 @@ const Register = (props) => {
     const jsonWebToken = props.jsonWebToken
     const setJSONWebToken = props.setJSONWebToken
 
+    const setIsLoggedIn = props.setIsLoggedIn
+
     const navigate = useNavigate();
 
     
@@ -22,13 +24,29 @@ const Register = (props) => {
 
             event.preventDefault();
             
-            // setJSONWebToken( await registerNewUser(username, password))
-            let result = await registerNewUser(username, password);
-            await setJSONWebToken(result);
+            try{
+                
+                let result = await registerNewUser(username, password);
+                if (result !== undefined) {
+                    await setJSONWebToken(result);
+                    setIsLoggedIn(true)
+                    navigate("/", {replace: true})  
+                } else {
+                    console.log("Already Registered")
+                }
+
+            }catch (error) {
+
+                console.log(error)
+
+            }
+
+
+            
+
+
 
             //make it so that theyre automatically logged in and take them to the posts page
-
-            navigate("/", {replace: true})
             
 
         }}>

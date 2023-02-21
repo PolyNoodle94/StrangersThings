@@ -10,17 +10,17 @@ const Navbar = (props) => {
     return(
         <div id="navbar">
 
-            <Link to="/"><button>Posts</button></Link>
-            <Link to="profile"><button>Profile</button></Link>
+            <Link to="/"><button className="navButton">Posts</button></Link>
+            <Link to="profile"><button className="navButton">Profile</button></Link>
             
             {
                 isLoggedIn ? <button onClick={()=>{ 
                     setIsLoggedIn(false)
                     window.location.reload(true);
-                }}>Log Out</button> : <Link to="login"><button>Login</button></Link>
+                }} className="navButton">Log Out</button> : <Link to="login"><button className="navButton">Login</button></Link>
             }
             
-            <button className="butt" onClick={()=> {
+            <button className="navButton" onClick={()=> {
                 console.log(jsonWebToken);
             }}>print token</button>
 
