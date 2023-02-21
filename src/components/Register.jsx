@@ -28,9 +28,11 @@ const Register = (props) => {
                 
                 let result = await registerNewUser(username, password);
                 if (result !== undefined) {
-                    await setJSONWebToken(result);
+                    setJSONWebToken(result);
                     setIsLoggedIn(true)
                     navigate("/", {replace: true})  
+                    localStorage.setItem("token", result) 
+                    
                 } else {
                     console.log("Already Registered")
                 }

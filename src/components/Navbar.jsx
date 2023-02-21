@@ -17,11 +17,12 @@ const Navbar = (props) => {
                 isLoggedIn ? <button onClick={()=>{ 
                     setIsLoggedIn(false)
                     window.location.reload(true);
+                    localStorage.removeItem("token")
                 }} className="navButton">Log Out</button> : <Link to="login"><button className="navButton">Login</button></Link>
             }
             
             <button className="navButton" onClick={()=> {
-                console.log(jsonWebToken);
+                console.log(localStorage.getItem("token"));
             }}>print token</button>
 
         </div>

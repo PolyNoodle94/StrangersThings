@@ -18,8 +18,10 @@ const Login = (props) => {
 
             event.preventDefault();
             
-            await setJSONWebToken(await logUserIn(username,password))
+            let result = await logUserIn(username, password) 
+            setJSONWebToken(result)
             setIsLoggedIn(true)
+            localStorage.setItem("token", result)
 
             navigate("/", {replace: true})  
 
