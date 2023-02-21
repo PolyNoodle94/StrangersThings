@@ -9,6 +9,9 @@ const Main = () => {
     const [allPosts, setAllPosts] = useState([])
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [jsonWebToken, setJSONWebToken] = useState('')
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
     const getPosts = async () => {
 
@@ -26,12 +29,12 @@ const Main = () => {
     return(
         <div id="main">
 
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <div id="container">
                 <Routes>
                     <Route exact path="/" element={<Posts allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
-                    <Route path="/register" element={<Register />}/>
-                    <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>} />
+                    <Route path="/register" element={<Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} jsonWebToken={jsonWebToken} setJSONWebToken={setJSONWebToken} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
+                    <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path="/profile" element={<Profile allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
                 </Routes>
             </div>

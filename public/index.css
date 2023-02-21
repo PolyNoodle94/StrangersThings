@@ -43,7 +43,28 @@ body {
   height: 95vh;
 }
 
+.registerPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+  height: 95vh;
+}
+
 .loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  height: 15%;
+  border: 2px solid green;
+  width: fit-content;
+  border-radius: 7px;
+  box-shadow: 4px 4px 4px black;
+}
+
+.registerForm {
   display: flex;
   flex-direction: column;
   justify-content: center;

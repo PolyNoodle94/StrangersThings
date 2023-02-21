@@ -1,18 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const Login = (props) => {
     const username = props.username;
     const password = props.password; 
     const setUsername = props.setUsername
     const setPassword = props.setPassword
+    const setIsLoggedIn = props.setIsLoggedIn
 
     return(
         <div className="loginPage" onSubmit={(event) => {
 
             event.preventDefault();
-            console.log(username)
-            console.log(password)
+            
+
+            setIsLoggedIn(true)
+
 
         }}>
             <form className="loginForm">
@@ -21,6 +24,7 @@ const Login = (props) => {
                     <input type="text" value={username} name="username" onChange={(event)=>{
 
                         setUsername(event.target.value)
+                        console.log('this is in login')
 
                     }}></input>
                 </label>
@@ -36,7 +40,7 @@ const Login = (props) => {
                 
                 <input className="butt" type="submit" value="Log in" ></input>
 
-                <Link to="register"><button className="butt">Click to Register! </button></Link>
+                <Link to="../register" ><button className="butt">Click to Register! </button></Link>
 
 
             </form>

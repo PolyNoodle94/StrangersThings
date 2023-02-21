@@ -8,7 +8,7 @@ const Posts = (props) => {
 
         getPosts()
 
-    }, [allPosts])
+    }, [])
 
     // need to check if running getPosts inside Profile would cause this to run also
 

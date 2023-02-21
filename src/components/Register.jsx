@@ -1,21 +1,46 @@
 import React from "react"
-import { Link } from 'react-router-dom'
+import { registerNewUser } from "../api-adapters"
+import { Link, useNavigate } from 'react-router-dom'
 
-const Register = () => {
+const Register = (props) => {
+
+    let username = props.username
+    let setUsername = props.setUsername
+
+    let password = props.password
+    let setPassword = props.setPassword
+
+    let jsonWebToken = props.jsonWebToken
+    let setJSONWebToken = props.setJSONWebToken
+
+    const navigate = useNavigate();
+
+    
+
     return (
-        <div className="loginPage" onSubmit={(event) => {
+        <div className="registerPage" onSubmit={async (event) => {
 
             event.preventDefault();
             console.log(username)
             console.log(password)
+            
+            setJSONWebToken( await registerNewUser(username, password))
+
+            console.log(jsonWebToken)
+
+            //make it so that theyre automatically logged in and take them to the posts page
+
+            // navigate("/", {replace: true})
+            
 
         }}>
-            <form className="loginForm">
+            <form className="registerForm">
                 <label className="formLabel">
                     Username: 
                     <input type="text" value={username} name="username" onChange={(event)=>{
 
                         setUsername(event.target.value)
+                        console.log('this is in register')
 
                     }}></input>
                 </label>
@@ -29,9 +54,9 @@ const Register = () => {
                     }}></input>
                 </label>
                 
-                <input className="butt" type="submit" value="Log in" ></input>
+                <input className="butt" type="submit" value="Register" ></input>
 
-                <Link to="login"><button className="butt">Click to Register! </button></Link>
+                <Link to="../login" ><button className="butt">Back to login</button></Link>
 
 
             </form>
