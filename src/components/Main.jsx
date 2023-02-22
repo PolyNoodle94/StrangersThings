@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, Posts, Login, Profile, Register } from "./"
+import { Navbar, Posts, Login, Profile, Register, AddPost } from "./"
 
 import { fetchAllPosts } from "../api-adapters";
 
@@ -43,6 +43,7 @@ const Main = () => {
                     <Route path="/register" element={<Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path="/profile" element={<Profile allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
+                    <Route path="/addPost" element={<AddPost/>}/>
                 </Routes>
             </div>
 
