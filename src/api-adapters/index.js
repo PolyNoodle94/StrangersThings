@@ -101,3 +101,14 @@ export const logUserIn = async (username, password) => {
     console.log(error);
   }
 };
+
+// export const deletePost = async (postId) => {
+//   try {
+//     await fetch(`${BASE_URL}/posts/${postId}`, {
+//       method: "DELETE",
+//       headers: makeHeaders(),
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

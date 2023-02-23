@@ -128,7 +128,7 @@ body {
 }
 
 #postDisplay::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .postCard {
@@ -164,8 +164,10 @@ body {
   width: 20%;
 }
 
-#newPostButton {
-  padding: 5px;
-  margin: 10px;
-  width: 100%;
+#deleteButton {
+  margin-right: 15px;
+}
+
+#onlyAuthors {
+  padding: 0px;
 }
