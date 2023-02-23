@@ -102,13 +102,29 @@ export const logUserIn = async (username, password) => {
   }
 };
 
-// export const deletePost = async (postId) => {
-//   try {
-//     await fetch(`${BASE_URL}/posts/${postId}`, {
-//       method: "DELETE",
-//       headers: makeHeaders(),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const deletePost = async (postId) => {
+  try {
+    await fetch(`${BASE_URL}/posts/${postId}`, {
+      method: "DELETE",
+      headers: makeHeaders(),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendMessage = async (postId, message) => {
+  try {
+    await fetch(`${BASE_URL}/posts/${postId}/messages`, {
+      method: "POST",
+      headers: makeHeaders(),
+      body: JSON.stringify({
+        message: {
+          content: message
+        }
+      }),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

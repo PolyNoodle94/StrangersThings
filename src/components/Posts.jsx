@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { AddPost, PostCard } from "./"
+import { AddPost, PostCard, SendMessageForm } from "./"
 import { Link } from "react-router-dom"
 
 const Posts = (props) => {
     const getPosts = props.getPosts;
     const allPosts = props.allPosts;
+    const [sendMessageToID, setSendMessageToID] = useState("");
 
     useEffect(() => {
 
@@ -22,13 +23,10 @@ const Posts = (props) => {
 
                 {
                     allPosts.map((post, idx) => {
-                        
-                        console.log(post.title)
-                        console.log(post.isAuthor)
 
                         return(
                 
-                            <PostCard key={`allPosts idx: ` + idx} post={post}></PostCard>
+                            <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID}></PostCard>
                         )
                 
                     })
@@ -38,11 +36,16 @@ const Posts = (props) => {
                 
             
             </div>
+            <div id="formContainer">
+                <div id="newPostForm">
 
-            <div id="newPostForm">
+                    <AddPost allPosts={allPosts} getPosts={getPosts}></AddPost>
 
-                <AddPost allPosts={allPosts} getPosts={getPosts}></AddPost>
-
+                </div>
+                {
+                    (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
+                    // : <p>test2</p>
+                }
             </div>
 
         </div>

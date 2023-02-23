@@ -127,6 +127,12 @@ body {
   overflow: auto;
 }
 
+#formDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #postDisplay::-webkit-scrollbar {
   /* display: none; */
 }
@@ -156,6 +162,10 @@ body {
 
 .postInfo p {
   padding-right: 30px;
+}
+
+#message {
+  padding-top: 0px;
 }
 
 #newPostForm {

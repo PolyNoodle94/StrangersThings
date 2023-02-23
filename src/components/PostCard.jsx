@@ -1,9 +1,13 @@
 import React from 'react'
-// import { deletePost } from '../api-adapters'
+import { Posts } from '.';
+import { deletePost } from '../api-adapters'
 
 const PostCard = (props) => {
 
-    const post = props.post
+    const post = props.post;
+    const getPosts = props.getPosts;
+    const sendMessageToID = props.sendMessageToID;
+    const setSendMessageToID = props.setSendMessageToID;
 
     return(
 
@@ -27,15 +31,33 @@ const PostCard = (props) => {
             {
                 post.isAuthor ? 
                 <div id="onlyAuthors">
+                    {console.log(post)}
                     <div className="postInfo">
-                        <button id="deleteButton">Delete Post</button> 
+                        <button id="deleteButton" onClick={async () =>{
+                            await deletePost(post._id);
+                            getPosts();
+                        }}>Delete Post</button> 
                     </div>
-                    {/* <div className="postInfo">
-                        <p><strong>Messages: </strong>{post.messages.length ? 1 : 2 } </p>
-                    </div> */}
+                    <div className="postInfo">
+                        <strong>Messages: </strong>{post.messages.length 
+                        ? post.messages.map((message, idx) => {
+                            return (<div id='message' key={"message idx: " + idx}><p><strong>{(idx+1) + ": " }</strong>{message.content}</p>
+                                <p><strong>From: </strong>{message.fromUser.username}</p>
+                            </div>)
+                        })
+                        : "none"
+                        } 
+                    </div>
                 </div>
                 
-                : <div className="postInfo"><button>Send Message</button></div>
+                : <div className="postInfo"><button onClick={() => {
+                    if (sendMessageToID === post._id) {
+                        setSendMessageToID("")
+                    }
+                    else {
+                        setSendMessageToID(post._id)
+                    }
+                }}>Send Message</button></div>
             }
 
         </div>
