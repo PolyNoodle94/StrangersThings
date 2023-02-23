@@ -23,9 +23,40 @@ const makeHeaders = () => {
 
 export const fetchAllPosts = async () => {
   try {
-    let response = await fetch(`${BASE_URL}/posts`);
+    let response = await fetch(`${BASE_URL}/posts`, {
+      method: "GET",
+      headers: makeHeaders(),
+    });
     let result = await response.json();
     return result.data.posts;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createNewPost = async (
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+) => {
+  try {
+    let response = await fetch(`${BASE_URL}/posts`, {
+      method: "POST",
+      headers: makeHeaders(),
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: willDeliver,
+        },
+      }),
+    });
+    let result = await response.json();
+    return result.data.post;
   } catch (error) {
     console.log(error);
   }

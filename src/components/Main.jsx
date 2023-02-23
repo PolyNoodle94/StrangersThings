@@ -13,15 +13,12 @@ const Main = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     // const [jsonWebToken, setJSONWebToken] = useState('')
-    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token")); 
 
    
     
-    
-
 
     const getPosts = async () => {
-
         try{
 
             let result = await fetchAllPosts();
@@ -43,7 +40,7 @@ const Main = () => {
                     <Route path="/register" element={<Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
                     <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path="/profile" element={<Profile allPosts={allPosts} setAllPosts={setAllPosts} getPosts={getPosts}/>}/>
-                    <Route path="/addPost" element={<AddPost/>}/>
+                    {/* <Route path="/addPost" element={<AddPost/>}/> */}
                 </Routes>
             </div>
 

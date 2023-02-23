@@ -9,25 +9,34 @@ const Login = (props) => {
     const setPassword = props.setPassword
     const setIsLoggedIn = props.setIsLoggedIn
 
-    const setJSONWebToken = props.setJSONWebToken
 
     const navigate = useNavigate()
 
     return(
+
+        
+
         <div className="loginPage" onSubmit={async (event) => {
 
             event.preventDefault();
-            
             let result = await logUserIn(username, password) 
-            setJSONWebToken(result)
-            setIsLoggedIn(true)
-            localStorage.setItem("token", result)
+            if (result) {
 
-            navigate("/", {replace: true})  
+                setIsLoggedIn(true)
+                localStorage.setItem("token", result)
+                navigate("/", {replace: true})  
+
+            } else {
+                alert("Invalid login credentials")
+            }
+
 
 
         }}>
-            <form className="loginForm">
+
+            {console.log("login is being rerendered")}
+
+            <form className="submissionForm">
                 <label className="formLabel">
                     Username: 
                     <input type="text" value={username} name="username" onChange={(event)=>{

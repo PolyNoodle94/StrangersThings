@@ -10,8 +10,6 @@ const Register = (props) => {
     const password = props.password
     const setPassword = props.setPassword
 
-    const jsonWebToken = props.jsonWebToken
-    const setJSONWebToken = props.setJSONWebToken
 
     const setIsLoggedIn = props.setIsLoggedIn
 
@@ -28,7 +26,6 @@ const Register = (props) => {
                 
                 let result = await registerNewUser(username, password);
                 if (result !== undefined) {
-                    setJSONWebToken(result);
                     setIsLoggedIn(true)
                     navigate("/", {replace: true})  
                     localStorage.setItem("token", result) 
@@ -44,15 +41,11 @@ const Register = (props) => {
             }
 
 
-            
-
-
-
             //make it so that theyre automatically logged in and take them to the posts page
             
 
         }}>
-            <form className="registerForm">
+            <form className="submissionForm">
                 <label className="formLabel">
                     Username: 
                     <input type="text" value={username} name="username" onChange={(event)=>{
