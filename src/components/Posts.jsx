@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { AddPost, PostCard, SendMessageForm } from "./"
+import { AddPost, PostCard, SendMessageForm, SearchForm } from "./"
 import { Link } from "react-router-dom"
 
 const Posts = (props) => {
@@ -9,27 +9,29 @@ const Posts = (props) => {
     const sendMessageToID = props.sendMessageToID
     const setSendMessageToID = props.setSendMessageToID
 
+    const [searchTitle, setSearchTitle] = useState("")
+    const [searchSeller, setSearchSeller] = useState("")
+
     useEffect(() => {
 
         getPosts()
 
     }, [])
 
-    // need to check if running getPosts inside Profile would cause this to run also
     return(
 
         <div id = "home">
-
 
             <div className="contentDisplay">
 
                 {
                     allPosts.map((post, idx) => {
-
-                        return(
-                
-                            <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
-                        )
+                        if (post.title.toLowerCase().includes(searchTitle.toLowerCase())
+                            && post.author.username.toLowerCase().includes(searchSeller.toLowerCase())) {
+                            return(
+                                <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
+                            )
+                        }
                 
                     })
                 
@@ -41,6 +43,7 @@ const Posts = (props) => {
             {
                 isLoggedIn && 
             <div id="formContainer">
+                <SearchForm setSearchTitle={setSearchTitle} setSearchSeller={setSearchSeller} />
                 <div id="newPostForm">
 
                     <AddPost getPosts={getPosts}></AddPost>

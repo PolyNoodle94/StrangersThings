@@ -24,6 +24,7 @@ const Login = (props) => {
 
                 setIsLoggedIn(true)
                 localStorage.setItem("token", result)
+                localStorage.setItem("username", username)
                 navigate("/", {replace: true})  
 
             } else {

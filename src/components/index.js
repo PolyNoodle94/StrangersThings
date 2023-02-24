@@ -7,3 +7,5 @@ export { default as Profile } from "./Profile";
 export { default as AddPost } from "./AddPost";
 export { default as PostCard } from "./PostCard";
 export { default as SendMessageForm } from "./SendMessageForm"
+export { default as MessageCard } from "./MessageCard"
+export { default as SearchForm } from "./SearchForm"

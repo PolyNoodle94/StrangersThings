@@ -18,6 +18,7 @@ const Navbar = (props) => {
                     setIsLoggedIn(false)
                     window.location.reload(true);
                     localStorage.removeItem("token")
+                    localStorage.removeItem("username")
                 }} className="navButton">Log Out</button> : <Link to="login"><button className="navButton">Login</button></Link>
             }
             

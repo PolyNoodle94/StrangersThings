@@ -1,5 +1,4 @@
 import React from 'react'
-import { Posts } from '.';
 import { deletePost } from '../api-adapters'
 
 const PostCard = (props) => {
@@ -22,7 +21,7 @@ const PostCard = (props) => {
             </div>
             <div className="postInfo">
                 <p><strong>Price: </strong>{post.price}</p>
-                <p><strong>Seller: </strong>{post.author.username}</p>
+                {(post.isAuthor === false || post.isAuthor === true) && <p><strong>Seller: </strong>{post.author.username}</p>}
             </div>
             <div className="postInfo">
                 <p><strong>Location: </strong>{post.location}</p>
@@ -30,9 +29,8 @@ const PostCard = (props) => {
             </div>
 
             {
-                post.isAuthor ? 
+                (post.isAuthor !== false) ? 
                 <div id="onlyAuthors">
-                    {console.log(post)}
                     <div className="postInfo">
                         <button id="deleteButton" onClick={async () =>{
                             await deletePost(post._id);

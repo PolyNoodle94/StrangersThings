@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { AddPost, PostCard, SendMessageForm } from "./"
+import { AddPost, PostCard, SendMessageForm, MessageCard } from "./"
 
 import { fetchUserData } from "../api-adapters"
 
@@ -12,6 +12,7 @@ const Profile = (props) => {
     const [userPosts, setUserPosts] = useState([])
     const [allMessages, setAllMessages] = useState([])
     const [userObject, setUserObject] = useState({})
+    const [selectedDisplay, setSelectedDisplay] = useState("userPosts")
 
     const sendMessageToID = props.sendMessageToID
     const setSendMessageToID = props.setSendMessageToID
@@ -19,8 +20,6 @@ const Profile = (props) => {
     const isLoggedIn = props.isLoggedIn
 
     const getPosts = props.getPosts
-
-    const selectedDisplay = ''
 
     const getUserData = async () => {
 
@@ -49,23 +48,13 @@ const Profile = (props) => {
 
         <div>
 
-            {console.log(userObject)}
-            {console.log("seperation")}
-            {console.log(userObject.messages)}
-            {console.log("seperation")}
-            {console.log(userObject._id)}
-            {console.log("seperation")}
-            {console.log(userObject.username)}
-            {/* {console.log("seperation")}
-            {console.log(userObject.messages[0]["fromUser"]["username"])} */}
-
             <div className="submissionForm">
                 <select id="selector" onChange={(evt) => {
 
-                    selectedDisplay = evt.target.value
+                    setSelectedDisplay(evt.target.value)
 
                 }}>
-                    <option value="userPosts">Posts: User</option>
+                    <option value="userPosts">User Posts</option>
                     <option value="sentMessages">Messages Sent</option>
                     <option value="receivedMessages">Messages Received</option>
                 </select>
@@ -73,60 +62,47 @@ const Profile = (props) => {
 
                 <div id = "home">
                     {/*Posts by User */}
-                    <div className="contentDisplay">
-                        {
-                            
-                            userPosts.map((post, idx) => {
-                                return(
-                                    <PostCard key={`userPosts idx: ` + idx} post={post} getUserData={getUserData} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
-                                )
-                            }) 
-                        }
-                    </div>
+                    {
+                        selectedDisplay === "userPosts" && <div className="contentDisplay">
+                            {
+                                
+                                userPosts.map((post, idx) => {
+                                    return(
+                                        <PostCard key={`userPosts idx: ` + idx} post={post} getUserData={getUserData} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
+                                    )
+                                }) 
+                            }
+                        </div>
+                    }
                     
                     
                     {/*Sent by User */}
-                    <div className="contentDisplay">
-                        {
-                            allMessages.map((message, idx) => {
-
-                                let booleanValue = (userObject.username === message.fromUser.username)
-                                if (booleanValue) {
-
-                                    return(
-                                        <h1 key={`allMessages Sent idx: ` + idx}>{`${booleanValue}`}</h1>
-                                    )
-
-                                } else {
-                                    return (<h1 key={`allMessages Sent idx: ` + idx}>Misery</h1>)
-                                }
-
-                            }) 
-                        }
-                    </div>
+                    {
+                        selectedDisplay === "sentMessages" && <div className="contentDisplay">
+                            {
+                                allMessages.filter((message) =>{
+                                    return (userObject.username === message.fromUser.username)
+                                }).map((message, idx) => {
+                                    return <MessageCard key={`allMessages Sent idx: ` + idx} message={message}/>
+                                }) 
+                            }
+                        </div>
+                    }
                     
 
                     {/*Sent to User */}
-                    <div className="contentDisplay">
+                    {
+                        selectedDisplay === "receivedMessages" && <div className="contentDisplay">
+                            {
+                                allMessages.filter((message) =>{
+                                    return (userObject.username !== message.fromUser.username)
+                                }).map((message, idx) => {
+                                    return <MessageCard key={`allMessages Received idx: ` + idx} message={message}/>
+                                }) 
+                            }
 
-                        {
-                            allMessages.map((message, idx) => {
-
-                                let booleanValue = (userObject.username !== message.fromUser.username)
-                                if (booleanValue) {
-
-                                    return(
-                                        <h1 key={`allMessages Sent idx: ` + idx}>{`${booleanValue}`}</h1>
-                                    )
-
-                                } else {
-                                    return (<h1 key={`allMessages Sent idx: ` + idx}>Misery</h1>)
-                                }
-
-                            }) 
-                        }
-
-                    </div>
+                        </div>
+                    }
                     
                     
                         
