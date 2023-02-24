@@ -5,7 +5,9 @@ import { Link } from "react-router-dom"
 const Posts = (props) => {
     const getPosts = props.getPosts;
     const allPosts = props.allPosts;
-    const [sendMessageToID, setSendMessageToID] = useState("");
+    const isLoggedIn = props.isLoggedIn
+    const sendMessageToID = props.sendMessageToID
+    const setSendMessageToID = props.setSendMessageToID
 
     useEffect(() => {
 
@@ -19,14 +21,14 @@ const Posts = (props) => {
         <div id = "home">
 
 
-            <div id="postDisplay">
+            <div className="contentDisplay">
 
                 {
                     allPosts.map((post, idx) => {
 
                         return(
                 
-                            <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID}></PostCard>
+                            <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
                         )
                 
                     })
@@ -36,17 +38,20 @@ const Posts = (props) => {
                 
             
             </div>
+            {
+                isLoggedIn && 
             <div id="formContainer">
                 <div id="newPostForm">
 
-                    <AddPost allPosts={allPosts} getPosts={getPosts}></AddPost>
+                    <AddPost getPosts={getPosts}></AddPost>
 
                 </div>
                 {
                     (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
-                    // : <p>test2</p>
+                    
                 }
             </div>
+            }   
 
         </div>
 

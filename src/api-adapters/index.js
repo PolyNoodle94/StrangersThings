@@ -34,6 +34,18 @@ export const fetchAllPosts = async () => {
   }
 };
 
+export const fetchUserData = async () => {
+  try {
+    let response = await fetch(`${BASE_URL}/users/me`, {
+      headers: makeHeaders(),
+    });
+    let result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createNewPost = async (
   title,
   description,
@@ -120,11 +132,11 @@ export const sendMessage = async (postId, message) => {
       headers: makeHeaders(),
       body: JSON.stringify({
         message: {
-          content: message
-        }
+          content: message,
+        },
       }),
     });
   } catch (error) {
     console.log(error);
   }
-}
+};

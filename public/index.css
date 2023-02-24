@@ -114,9 +114,8 @@ body {
   border: 2px solid palegreen;
 }
 
-#postDisplay {
+.contentDisplay {
   display: flex;
-  /* flex: 1; */
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -162,6 +161,22 @@ body {
 
 .postInfo p {
   padding-right: 30px;
+}
+
+#messageDisplayDiv {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  overflow: auto;
+}
+
+#messageFormContainer {
+  margin-left: 15px;
+  width: 20%;
+}
+
+#willDeliverInputContainer {
+  display: block;
 }
 
 #message {

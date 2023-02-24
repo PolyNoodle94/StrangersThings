@@ -85,14 +85,17 @@ const AddPost = (props) => {
                     }}></input>
                 </label>
 
-                <label className="formLabel">
+                <label className="formLabel" >
                      
-                    <input id="willDeliverCheckbox" type="checkbox" onChange={() => {
+                    <div id="willDeliverInputContainer">
+                        <input id="willDeliverCheckbox" type="checkbox" onChange={() => {
 
-                        willDeliver = willDeliverButton.checked
+                            willDeliver = willDeliverButton.checked
 
-                    }}/> 
-                    Will Deliver:
+                        }}/> 
+                        Will Deliver
+                    </div>
+
                 </label>
 
                 <input className="butt" type="submit" value="Add New Post" ></input>

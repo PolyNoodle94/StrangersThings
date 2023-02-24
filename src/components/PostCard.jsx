@@ -6,6 +6,7 @@ const PostCard = (props) => {
 
     const post = props.post;
     const getPosts = props.getPosts;
+    const isLoggedIn = props.isLoggedIn
     const sendMessageToID = props.sendMessageToID;
     const setSendMessageToID = props.setSendMessageToID;
 
@@ -38,7 +39,8 @@ const PostCard = (props) => {
                             getPosts();
                         }}>Delete Post</button> 
                     </div>
-                    <div className="postInfo">
+                    <div id="messageDisplayDiv" className="postInfo">
+                        
                         <strong>Messages: </strong>{post.messages.length 
                         ? post.messages.map((message, idx) => {
                             return (<div id='message' key={"message idx: " + idx}><p><strong>{(idx+1) + ": " }</strong>{message.content}</p>
@@ -50,14 +52,15 @@ const PostCard = (props) => {
                     </div>
                 </div>
                 
-                : <div className="postInfo"><button onClick={() => {
+                : (isLoggedIn && <div className="postInfo"><button onClick={() => {
+                    //Consider setting sendMessageToId to "" on the onSubmit for the message form 
                     if (sendMessageToID === post._id) {
                         setSendMessageToID("")
                     }
                     else {
                         setSendMessageToID(post._id)
                     }
-                }}>Send Message</button></div>
+                }}>Send Message</button></div>)
             }
 
         </div>

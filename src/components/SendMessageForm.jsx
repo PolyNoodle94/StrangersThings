@@ -7,7 +7,7 @@ const SendMessageForm = (props) => {
     let message = "";
 
     return (
-        <div>
+        <div id="messageFormContainer">
             <form id="sendMessageForm" className="submissionForm" onSubmit={async (event) => {
                 event.preventDefault()
                 await sendMessage(sendMessageToID, message)
