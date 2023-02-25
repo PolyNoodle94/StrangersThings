@@ -47,23 +47,23 @@ const Profile = (props) => {
     return (
 
         <div>
+            <div id = "home">
+                <div className="contentDisplay">
+                    <div className="submissionForm">
+                        <select id="selector" onChange={(evt) => {
 
-            <div className="submissionForm">
-                <select id="selector" onChange={(evt) => {
+                            setSelectedDisplay(evt.target.value)
 
-                    setSelectedDisplay(evt.target.value)
+                        }}>
+                            <option value="userPosts">User Posts</option>
+                            <option value="sentMessages">Messages Sent</option>
+                            <option value="receivedMessages">Messages Received</option>
+                        </select>
+                    </div>
 
-                }}>
-                    <option value="userPosts">User Posts</option>
-                    <option value="sentMessages">Messages Sent</option>
-                    <option value="receivedMessages">Messages Received</option>
-                </select>
-            </div>
-
-                <div id = "home">
                     {/*Posts by User */}
                     {
-                        selectedDisplay === "userPosts" && <div className="contentDisplay">
+                        selectedDisplay === "userPosts" && <div>
                             {
                                 
                                 userPosts.map((post, idx) => {
@@ -74,8 +74,7 @@ const Profile = (props) => {
                             }
                         </div>
                     }
-                    
-                    
+
                     {/*Sent by User */}
                     {
                         selectedDisplay === "sentMessages" && <div className="contentDisplay">
@@ -88,7 +87,6 @@ const Profile = (props) => {
                             }
                         </div>
                     }
-                    
 
                     {/*Sent to User */}
                     {
@@ -103,20 +101,17 @@ const Profile = (props) => {
 
                         </div>
                     }
+                </div>                  
+                
+                
                     
-                    
+                <div id="formContainer">
+                    <AddPost getPosts={getPosts}></AddPost>
+                    {
+                        (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
                         
-                    <div id="formContainer">
-                        <div id="newPostForm">
-
-                            <AddPost getPosts={getPosts}></AddPost>
-
-                        </div>
-                        {
-                            (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
-                            
-                        }
-                    </div>
+                    }
+                </div>
                     
 
                 

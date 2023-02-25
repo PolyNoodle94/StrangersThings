@@ -1,48 +1,46 @@
+:root {
+  --navbarHeight: 60px;
+  --themeColor: rgb(0, 175, 188);
+}
+
 * {
   margin: 0px;
   padding: 0px;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
+  font-family: "Poppins";
 }
 
 html {
-  height: 98vh;
+  height: 100vh;
   display: flex;
-  /* flex: 1; */
 }
 
 body {
   margin: 0;
-  border: 5px solid salmon;
-  height: 100%;
   display: flex;
   flex: 1;
 }
 
 #app {
   margin: 0px;
-  height: 100%;
-  border: solid 2px purple;
   display: flex;
   flex: 1;
 }
 
 #main {
   margin: 0px;
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: solid 2px yellow;
 }
 
 #navbar {
-  background-color: black;
+  background-color: var(--themeColor);
   display: flex;
   align-items: center;
-  flex-grow: 1;
-  max-height: 10%;
-  min-height: 40px;
+  flex: 0;
+  min-height: var(--navbarHeight);
 }
 
 .navButton {
@@ -55,8 +53,7 @@ body {
 #container {
   display: flex;
   flex: 1;
-  height: 100%;
-  border: solid 2px grey;
+  background-color: red;
 }
 
 .loginPage {
@@ -65,8 +62,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
-  height: 100%;
 }
 
 .registerPage {
@@ -75,8 +70,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
-  height: 100%;
 }
 
 .submissionForm {
@@ -85,10 +78,10 @@ body {
   justify-content: center;
   padding: 10px;
   height: fit-content;
-  border: 2px solid green;
   width: fit-content;
   border-radius: 7px;
-  box-shadow: 4px 4px 4px black;
+  box-shadow: 2px 2px 6px black;
+  background-color: white;
 }
 
 .formLabel {
@@ -98,7 +91,6 @@ body {
 }
 
 .butt {
-  border: 2px solid blue;
   width: 100%;
   margin-top: 5px;
 }
@@ -106,12 +98,11 @@ body {
 #home {
   display: flex;
   flex-direction: row;
+  flex: 1;
   justify-content: center;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
-  padding: 20px;
-  border: 2px solid palegreen;
+  background-color: rgb(230, 230, 230);
 }
 
 .contentDisplay {
@@ -119,10 +110,11 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 80%;
-  border: 5px solid black;
-  padding-left: 20px;
-  padding-right: 20px;
+  height: calc(100vh - var(--navbarHeight) - 25px);
+  border: 1px solid var(--themeColor);
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+  margin: 10px;
   overflow: auto;
 }
 
@@ -137,11 +129,15 @@ body {
 }
 
 .postCard {
-  flex: 1;
-  height: 100%;
   width: 100%;
-  border: 2px solid blue;
+  background-color: white;
+  box-shadow: 2px 2px 6px black;
+  border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.postCard:last-of-type {
+  margin-bottom: 0px;
 }
 
 .postCard div {
@@ -149,14 +145,14 @@ body {
 }
 
 #postDescription {
-  border-top: 2px solid black;
+  border-top: 1px solid var(--themeColor);
   min-height: 100px;
   max-height: 100px;
   overflow: auto;
 }
 
 .postInfo {
-  border-top: 2px solid black;
+  border-top: 1px solid var(--themeColor);
   display: flex;
   flex-direction: row;
 }
@@ -183,12 +179,6 @@ body {
 
 #message {
   padding-top: 0px;
-}
-
-#newPostForm {
-  padding: 5px;
-  margin: 10px;
-  width: 20%;
 }
 
 #deleteButton {

@@ -41,18 +41,12 @@ const Posts = (props) => {
             
             </div>
             {
-                isLoggedIn && 
             <div id="formContainer">
                 <SearchForm setSearchTitle={setSearchTitle} setSearchSeller={setSearchSeller} />
-                <div id="newPostForm">
 
-                    <AddPost getPosts={getPosts}></AddPost>
+                { isLoggedIn && <AddPost getPosts={getPosts}></AddPost> }
 
-                </div>
-                {
-                    (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
-                    
-                }
+                { isLoggedIn && sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/> }
             </div>
             }   
 
