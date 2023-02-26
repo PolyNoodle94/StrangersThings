@@ -18,7 +18,7 @@ const Register = (props) => {
     
 
     return (
-        <div className="registerPage" onSubmit={async (event) => {
+        <div className="entryPage" onSubmit={async (event) => {
 
             event.preventDefault();
             

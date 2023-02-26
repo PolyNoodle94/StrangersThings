@@ -3,6 +3,8 @@ import { sendMessage } from "../api-adapters";
 
 const SendMessageForm = (props) => {
     const sendMessageToID = props.sendMessageToID;
+    const postTitle = props.postTitle;
+    const getUserData = props.getUserData;
 
     let message = "";
 
@@ -13,8 +15,15 @@ const SendMessageForm = (props) => {
                 await sendMessage(sendMessageToID, message)
                 document.getElementById("sendMessageForm").reset();
                 message = "";
+                if (getUserData) {
+                    getUserData();
+                }
             }}>
-
+                <h2>Send Message:</h2>
+                <label>
+                    Post: 
+                    {" " + postTitle}
+                </label>
                 <label className="formLabel">
                     Message: 
                     <input type="text" defaultValue={message} name="message" onChange={(event)=>{
@@ -24,7 +33,6 @@ const SendMessageForm = (props) => {
                     }}></input>
                 </label>
                 <input className="butt" type="submit" value="Send Message" ></input>
-
             </form>
         </div>
     )

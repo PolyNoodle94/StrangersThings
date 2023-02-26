@@ -5,9 +5,11 @@ const PostCard = (props) => {
 
     const post = props.post;
     const getPosts = props.getPosts;
+    const getUserData = props.getUserData;
     const isLoggedIn = props.isLoggedIn
     const sendMessageToID = props.sendMessageToID;
     const setSendMessageToID = props.setSendMessageToID;
+    const setPostTitle = props.setPostTitle;
 
     return(
 
@@ -34,7 +36,12 @@ const PostCard = (props) => {
                     <div className="postInfo">
                         <button id="deleteButton" onClick={async () =>{
                             await deletePost(post._id);
-                            getPosts();
+                            if (getPosts) {
+                                getPosts();
+                            }
+                            else {
+                                getUserData();
+                            }
                         }}>Delete Post</button> 
                     </div>
                     <div id="messageDisplayDiv" className="postInfo">
@@ -50,15 +57,20 @@ const PostCard = (props) => {
                     </div>
                 </div>
                 
-                : (isLoggedIn && <div className="postInfo"><button onClick={() => {
-                    //Consider setting sendMessageToId to "" on the onSubmit for the message form 
-                    if (sendMessageToID === post._id) {
-                        setSendMessageToID("")
-                    }
-                    else {
-                        setSendMessageToID(post._id)
-                    }
-                }}>Send Message</button></div>)
+                : (isLoggedIn && 
+                <div className="postInfo">
+                    <button onClick={() => {
+                        //Consider setting sendMessageToId to "" on the onSubmit for the message form 
+                        if (sendMessageToID === post._id) {
+                            setSendMessageToID("")
+                            setPostTitle("")
+                        }
+                        else {
+                            setSendMessageToID(post._id)
+                            setPostTitle(post.title)
+                        }
+                    }}>Send Message</button>
+                </div>)
             }
 
         </div>

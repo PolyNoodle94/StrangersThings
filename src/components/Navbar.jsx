@@ -1,30 +1,32 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = (props) => {
 
     const isLoggedIn = props.isLoggedIn
     const setIsLoggedIn = props.setIsLoggedIn
-    const jsonWebToken = props.jsonWebToken
+
+    const navigate = useNavigate();
 
     return(
         <div id="navbar">
 
             <Link to="/"><button className="navButton">Posts</button></Link>
-            <Link to="profile"><button className="navButton">Profile</button></Link>
+            { isLoggedIn && <Link to="profile"><button className="navButton">Profile</button></Link> }
             
             {
                 isLoggedIn ? <button onClick={()=>{ 
                     setIsLoggedIn(false)
-                    window.location.reload(true);
                     localStorage.removeItem("token")
                     localStorage.removeItem("username")
+                    navigate("/", {replace: true}) 
+                    window.location.reload(true);
                 }} className="navButton">Log Out</button> : <Link to="login"><button className="navButton">Login</button></Link>
             }
-            
-            <button className="navButton" onClick={()=> {
-                console.log(localStorage.getItem("token"));
-            }}>print token</button>
+
+            {isLoggedIn && <button className='navButton'>
+                <strong>User: </strong>{localStorage.getItem("username")}
+            </button>}
 
         </div>
     )

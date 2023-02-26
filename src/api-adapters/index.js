@@ -1,12 +1,5 @@
 let BASE_URL = "https://strangers-things.herokuapp.com/api/2301-ftb-et-web-ft";
 
-// export let apiWebToken = "";
-
-// export const setApiWebToken = (string) => {
-//   apiWebToken = string;
-//   console.log(apiWebToken);
-// };
-
 const makeHeaders = () => {
   if (localStorage.getItem("token")) {
     const token = localStorage.getItem("token");

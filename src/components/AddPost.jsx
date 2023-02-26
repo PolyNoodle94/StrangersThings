@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom"
 
 const AddPost = (props) => {
 
-    const getPosts = props.getPosts
+    const getPosts = props.getPosts;
+    const getUserData = props.getUserData;
 
     let title = ''
     let description = ''
@@ -22,16 +23,15 @@ const AddPost = (props) => {
         <form id="addPostForm" className="submissionForm" onSubmit={async (event) => {
 
             event.preventDefault()
-            //Since the add New Post form is in the same page as the post display, we will need to add it to state since thats the only way the useEffect will rerender
-            //and return a new set of posts...
-
-            //Something we might want to do since the height of the form is fit-content: find a CSS thing to let input boxes stretch out rather than their width and height remaining
-            //constant no matter how much the user types
-            console.log(`${title} ${description} ${price} ${location} ${willDeliver}`)
 
             await createNewPost(title, description, price, location, willDeliver)
 
-            getPosts()
+            if (getPosts) {
+                getPosts();
+            }
+            else {
+                getUserData();
+            }
 
             addPostForm.reset()
 
@@ -43,6 +43,7 @@ const AddPost = (props) => {
             willDeliver = willDeliverButton.checked
 
         }}>
+            <h2>Create Post:</h2>
 
             <label className="formLabel">
                 Title: 
@@ -83,12 +84,12 @@ const AddPost = (props) => {
             <label className="formLabel" >
                     
                 <div id="willDeliverInputContainer">
+                    Will Deliver:
                     <input id="willDeliverCheckbox" type="checkbox" onChange={() => {
 
                         willDeliver = willDeliverButton.checked
 
                     }}/> 
-                    Will Deliver
                 </div>
 
             </label>

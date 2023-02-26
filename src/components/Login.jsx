@@ -16,7 +16,7 @@ const Login = (props) => {
 
         
 
-        <div className="loginPage" onSubmit={async (event) => {
+        <div className="entryPage" onSubmit={async (event) => {
 
             event.preventDefault();
             let result = await logUserIn(username, password) 
@@ -34,8 +34,6 @@ const Login = (props) => {
 
 
         }}>
-
-            {console.log("login is being rerendered")}
 
             <form className="submissionForm">
                 <label className="formLabel">

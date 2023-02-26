@@ -1,6 +1,7 @@
 :root {
   --navbarHeight: 60px;
   --themeColor: rgb(0, 175, 188);
+  --backGroundColor: rgb(230, 230, 230);
 }
 
 * {
@@ -56,20 +57,13 @@ body {
   background-color: red;
 }
 
-.loginPage {
+.entryPage {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.registerPage {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: var(--backGroundColor);
 }
 
 .submissionForm {
@@ -78,10 +72,11 @@ body {
   justify-content: center;
   padding: 10px;
   height: fit-content;
-  width: fit-content;
+  width: 288px;
   border-radius: 7px;
   box-shadow: 2px 2px 6px black;
   background-color: white;
+  margin: 10px;
 }
 
 .formLabel {
@@ -102,7 +97,7 @@ body {
   justify-content: center;
   justify-content: space-between;
   width: 100%;
-  background-color: rgb(230, 230, 230);
+  background-color: var(--backGroundColor);
 }
 
 .contentDisplay {
@@ -168,13 +163,34 @@ body {
   overflow: auto;
 }
 
+.messageCard {
+  width: 100%;
+  background-color: white;
+  box-shadow: 2px 2px 6px black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.messageCardInfo {
+  padding: 10px;
+  border-top: 1px solid var(--themeColor);
+}
+
+.messageCard h1 {
+  border-top: 0px;
+}
+
+#selector {
+  margin-top: 10px;
+}
+
 #messageFormContainer {
-  margin-left: 15px;
   width: 20%;
 }
 
 #willDeliverInputContainer {
-  display: block;
+  display: flex;
+  flex-direction: row;
 }
 
 #message {

@@ -14,12 +14,12 @@ const SearchForm = (props) => {
             searchForm.reset();
         }}>
             <h2>Search: </h2>
-            <label>Title:
+            <label className='formLabel'>Title:
                 <input type='text' name="title" onChange={(event)=>{
                     setSearchTitle(event.target.value)
                 }}/>
             </label>
-            <label>Seller:
+            <label className='formLabel'>Seller:
                 <input type='text' name="seller" onChange={(event)=>{
                     setSearchSeller(event.target.value)
                 }}/>

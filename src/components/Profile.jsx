@@ -14,12 +14,12 @@ const Profile = (props) => {
     const [userObject, setUserObject] = useState({})
     const [selectedDisplay, setSelectedDisplay] = useState("userPosts")
 
-    const sendMessageToID = props.sendMessageToID
-    const setSendMessageToID = props.setSendMessageToID
+    const sendMessageToID = props.sendMessageToID;
+    const setSendMessageToID = props.setSendMessageToID;
+    const postTitle = props.postTitle;
+    const setPostTitle = props.setPostTitle;
 
     const isLoggedIn = props.isLoggedIn
-
-    const getPosts = props.getPosts
 
     const getUserData = async () => {
 
@@ -45,81 +45,72 @@ const Profile = (props) => {
     }, [])
 
     return (
+        <div id = "home">
+            <div className="contentDisplay">
 
-        <div>
-            <div id = "home">
-                <div className="contentDisplay">
-                    <div className="submissionForm">
-                        <select id="selector" onChange={(evt) => {
-
-                            setSelectedDisplay(evt.target.value)
-
-                        }}>
-                            <option value="userPosts">User Posts</option>
-                            <option value="sentMessages">Messages Sent</option>
-                            <option value="receivedMessages">Messages Received</option>
-                        </select>
+                {/*Posts by User */}
+                {
+                    selectedDisplay === "userPosts" && <div>
+                        {
+                            
+                            userPosts.slice(0).reverse().map((post, idx) => {
+                                return(
+                                    post.active && <PostCard key={`userPosts idx: ` + idx} post={post} getUserData={getUserData} isLoggedIn={isLoggedIn}></PostCard>
+                                )
+                            }) 
+                        }
                     </div>
+                }
 
-                    {/*Posts by User */}
-                    {
-                        selectedDisplay === "userPosts" && <div>
-                            {
-                                
-                                userPosts.map((post, idx) => {
-                                    return(
-                                        <PostCard key={`userPosts idx: ` + idx} post={post} getUserData={getUserData} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
-                                    )
-                                }) 
-                            }
-                        </div>
-                    }
+                {/*Sent by User */}
+                {
+                    selectedDisplay === "sentMessages" && <div>
+                        {
+                            allMessages.filter((message) =>{
+                                return (userObject.username === message.fromUser.username)
+                            }).slice(0).reverse().map((message, idx) => {
+                                return <MessageCard key={`allMessages Sent idx: ` + idx} message={message} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID}  setPostTitle={setPostTitle}/>
+                            }) 
+                        }
+                    </div>
+                }
 
-                    {/*Sent by User */}
-                    {
-                        selectedDisplay === "sentMessages" && <div className="contentDisplay">
-                            {
-                                allMessages.filter((message) =>{
-                                    return (userObject.username === message.fromUser.username)
-                                }).map((message, idx) => {
-                                    return <MessageCard key={`allMessages Sent idx: ` + idx} message={message}/>
-                                }) 
-                            }
-                        </div>
-                    }
+                {/*Sent to User */}
+                {
+                    selectedDisplay === "receivedMessages" && <div>
+                        {
+                            allMessages.filter((message) =>{
+                                return (userObject.username !== message.fromUser.username)
+                            }).slice(0).reverse().map((message, idx) => {
+                                return <MessageCard key={`allMessages Received idx: ` + idx} message={message} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID}/>
+                            }) 
+                        }
 
-                    {/*Sent to User */}
-                    {
-                        selectedDisplay === "receivedMessages" && <div className="contentDisplay">
-                            {
-                                allMessages.filter((message) =>{
-                                    return (userObject.username !== message.fromUser.username)
-                                }).map((message, idx) => {
-                                    return <MessageCard key={`allMessages Received idx: ` + idx} message={message}/>
-                                }) 
-                            }
-
-                        </div>
-                    }
-                </div>                  
+                    </div>
+                }
+            </div>                  
+            
+            
                 
-                
-                    
-                <div id="formContainer">
-                    <AddPost getPosts={getPosts}></AddPost>
-                    {
-                        (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/>)
-                        
-                    }
+            <div id="formContainer">
+                <div className="submissionForm" id="selector">
+                    <select onChange={(evt) => {
+
+                        setSelectedDisplay(evt.target.value)
+
+                    }}>
+                        <option value="userPosts">User Posts</option>
+                        <option value="sentMessages">Messages Sent</option>
+                        <option value="receivedMessages">Messages Received</option>
+                    </select>
                 </div>
+                <AddPost getUserData={getUserData}></AddPost>
+                {
+                    (sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID} postTitle={postTitle} getUserData={getUserData}/>)
                     
-
-                
-
+                }
             </div>
-
-
-
+                
         </div>
 
 

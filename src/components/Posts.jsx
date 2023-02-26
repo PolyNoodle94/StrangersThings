@@ -5,9 +5,11 @@ import { Link } from "react-router-dom"
 const Posts = (props) => {
     const getPosts = props.getPosts;
     const allPosts = props.allPosts;
-    const isLoggedIn = props.isLoggedIn
-    const sendMessageToID = props.sendMessageToID
-    const setSendMessageToID = props.setSendMessageToID
+    const isLoggedIn = props.isLoggedIn;
+    const sendMessageToID = props.sendMessageToID;
+    const setSendMessageToID = props.setSendMessageToID;
+    const postTitle = props.postTitle;
+    const setPostTitle = props.setPostTitle;
 
     const [searchTitle, setSearchTitle] = useState("")
     const [searchSeller, setSearchSeller] = useState("")
@@ -20,16 +22,16 @@ const Posts = (props) => {
 
     return(
 
-        <div id = "home">
+        <div id="home">
 
             <div className="contentDisplay">
 
                 {
-                    allPosts.map((post, idx) => {
+                    allPosts.slice(0).reverse().map((post, idx) => {
                         if (post.title.toLowerCase().includes(searchTitle.toLowerCase())
                             && post.author.username.toLowerCase().includes(searchSeller.toLowerCase())) {
                             return(
-                                <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn}></PostCard>
+                                <PostCard key={`allPosts idx: ` + idx} post={post} getPosts={getPosts} sendMessageToID={sendMessageToID} setSendMessageToID={setSendMessageToID} isLoggedIn={isLoggedIn} setPostTitle={setPostTitle}></PostCard>
                             )
                         }
                 
@@ -46,7 +48,7 @@ const Posts = (props) => {
 
                 { isLoggedIn && <AddPost getPosts={getPosts}></AddPost> }
 
-                { isLoggedIn && sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID}/> }
+                { isLoggedIn && sendMessageToID && <SendMessageForm sendMessageToID={sendMessageToID} postTitle={postTitle}/> }
             </div>
             }   
 
