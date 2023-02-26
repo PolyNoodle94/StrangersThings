@@ -1,25 +1,30 @@
-import React, {useState} from "react"
+import React from "react"
 import { createNewPost } from "../api-adapters"
-import { useNavigate } from "react-router-dom"
+
 
 const AddPost = (props) => {
 
+    //Declare two state variables from props. If we are in Posts page, only getPosts is passed down. If we are in Profile, only getUserData gets passed down
     const getPosts = props.getPosts;
     const getUserData = props.getUserData;
 
+    //Declare variables used to store user inputs
     let title = ''
     let description = ''
     let price = ''
     let location = ''
     let willDeliver = false
 
-    let addPostForm = document.getElementById('addPostForm')
+    //Store the forms Node in a variable
+    const addPostForm = document.getElementById('addPostForm')
 
-    let willDeliverButton = document.getElementById('willDeliverCheckbox')
+    //Store the checkbox button's Node in a variable
+    const willDeliverButton = document.getElementById('willDeliverCheckbox')
 
 
     
     return(
+        // Create form that takes 5 user inputs, which onSubmit, creates a new post
         <form id="addPostForm" className="submissionForm" onSubmit={async (event) => {
 
             event.preventDefault()

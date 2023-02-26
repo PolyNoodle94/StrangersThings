@@ -3,19 +3,23 @@ import { logUserIn } from '../api-adapters';
 import { Link, useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
+
+    //Declares state passed down from props 
     const username = props.username;
-    const password = props.password; 
     const setUsername = props.setUsername
+    const password = props.password; 
     const setPassword = props.setPassword
     const setIsLoggedIn = props.setIsLoggedIn
 
-
+    //used to navigate the user back to the posts page after they login or register successfully 
     const navigate = useNavigate()
 
     return(
 
         
-
+        // Contains a form asking the user to login by providing a username and password
+        // upon successful login, the user receives a JSON Web Token stored in local storage, has their username stored in localStorage, is sent to the Posts page, and is able to
+        //      interact with the page as a logged in user. 
         <div className="entryPage" onSubmit={async (event) => {
 
             event.preventDefault();

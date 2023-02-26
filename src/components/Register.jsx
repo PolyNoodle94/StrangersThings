@@ -4,20 +4,20 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Register = (props) => {
 
+    //Declares state passed down from props 
     const username = props.username
     const setUsername = props.setUsername
-
     const password = props.password
     const setPassword = props.setPassword
-
-
     const setIsLoggedIn = props.setIsLoggedIn
 
+    //Used to send the user to the posts page upon successful register
     const navigate = useNavigate();
 
-    
 
     return (
+        // Stores a form which asks the user for two inputs which are then sent to the api, and upon success, saves their data into the database and returns a JSON Web Token used to access
+        //      and interact with the rest of the website
         <div className="entryPage" onSubmit={async (event) => {
 
             event.preventDefault();
@@ -29,20 +29,16 @@ const Register = (props) => {
                     setIsLoggedIn(true)
                     navigate("/", {replace: true})  
                     localStorage.setItem("token", result) 
+                    localStorage.setItem("username", username) 
+
                     
                 } else {
                     console.log("Already Registered")
                 }
 
             }catch (error) {
-
                 console.log(error)
-
             }
-
-
-            //make it so that theyre automatically logged in and take them to the posts page
-            
 
         }}>
             <form className="submissionForm">

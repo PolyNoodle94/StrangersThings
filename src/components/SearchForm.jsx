@@ -1,12 +1,16 @@
 import React from 'react'
 
 const SearchForm = (props) => {
+    //Declare two state variables from props
     const setSearchTitle = props.setSearchTitle;
     const setSearchSeller = props.setSearchSeller;
 
+    //Store the form's DOM Node in a variable 
     const searchForm = document.getElementById('searchForm')
 
     return (
+        // Return a form which allows for two user inputs, a post title and a post seller, then store those inputs within state variables that we use to filter through allPosts
+        // Upon clicking the clear button, reset the form inputs and change the stored values in state to empty strings
         <form id="searchForm" className="submissionForm" onSubmit={(event)=>{
             event.preventDefault();
             setSearchTitle("");

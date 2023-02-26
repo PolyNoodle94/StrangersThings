@@ -119,10 +119,6 @@ body {
   align-items: center;
 }
 
-#postDisplay::-webkit-scrollbar {
-  /* display: none; */
-}
-
 .postCard {
   width: 100%;
   background-color: white;
@@ -188,13 +184,13 @@ body {
   width: 20%;
 }
 
+#message {
+  padding-top: 0px;
+}
+
 #willDeliverInputContainer {
   display: flex;
   flex-direction: row;
-}
-
-#message {
-  padding-top: 0px;
 }
 
 #deleteButton {
